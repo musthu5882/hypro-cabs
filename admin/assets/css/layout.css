@@ -1,0 +1,121 @@
+/* --- SIDEBAR BASE --- */
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 45;
+    display: none;
+}
+#overlay.active { display: block; }
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: var(--primary);
+    z-index: 50;
+    overflow-x: hidden;
+    transition: 0.3s;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ✅ THIS WAS MISSING */
+.sidebar.open {
+    width: var(--sidebar-width);
+}
+
+/* --- HEADER SPACE FIX --- */
+.app-header {
+    transition: margin-left 0.3s, width 0.3s;
+}
+
+/* --- SIDEBAR HEAD --- */
+.sidebar-head {
+    background: #020617;
+    color: white;
+    padding: 0 1.5rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#closeBtn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+/* --- NAV LINKS --- */
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    color: #94a3b8;
+    border-left: 4px solid transparent;
+    transition: 0.2s;
+}
+
+.nav-link:hover {
+    background: rgba(255,255,255,0.05);
+    color: white;
+}
+
+.nav-link.active {
+    background: var(--accent);
+    color: white;
+    border-left-color: white;
+}
+
+.nav-link i {
+    width: 20px;
+    text-align: center;
+}
+
+/* --- MAIN CONTENT --- */
+#main-content {
+    padding: 2rem;
+    margin-top: 64px;
+    transition: margin-left 0.3s;
+}
+
+/* ================= DESKTOP ================= */
+@media (min-width: 768px) {
+    .sidebar {
+        width: var(--sidebar-width) !important;
+    }
+
+    .app-header {
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+    }
+
+    #main-content {
+        margin-left: var(--sidebar-width);
+    }
+
+    #menuBtn,
+    #closeBtn,
+    #overlay {
+        display: none !important;
+    }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 767px) {
+    .app-header {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,38 @@
+:root {
+    --primary: #0f172a;    /* Dark Blue */
+    --accent: #2563eb;     /* Bright Blue */
+    --bg: #f8fafc;         /* Light Gray BG */
+    --card: #ffffff;       /* White */
+    --text: #334155;       /* Dark Gray Text */
+    --text-light: #64748b; /* Light Gray Text */
+    --border: #e2e8f0;
+    --sidebar-width: 260px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body { background: var(--bg); color: var(--text); }
+
+/* Header Standard */
+.app-header {
+    background: var(--primary);
+    color: white;
+    padding: 0 1.5rem;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 40;
+    transition: margin-left 0.3s;
+}
+
+.header-left { display: flex; align-items: center; gap: 15px; }
+.app-header h1 { font-size: 1.2rem; font-weight: 600; }
+.icon-btn { font-size: 1.4rem; cursor: pointer; }
+
+.hidden { display: none !important; }
+

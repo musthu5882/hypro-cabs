@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Fare Calculator | Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/pages/trip-fare.css">
+</head>
+<body class="bg-gray-100">
+
+    <header class="app-header">
+        <div class="header-left">
+            <span id="menuBtn" class="icon-btn"><i class="fas fa-bars"></i></span>
+            <h1>Trip Fare Estimation</h1>
+        </div>
+        <div class="header-right">
+            <a href="../index.html" class="text-white"><i class="fas fa-home"></i></a>
+        </div>
+    </header>
+
+    <div id="sidebar-container"></div>
+
+    <main id="main-content" class="p-4 md:p-6 transition-all duration-300">
+        <div class="bg-white p-6 rounded-xl shadow-md max-w-4xl mx-auto">
+            
+            <!-- Row 1: Trip Type -->
+            <div class="mb-5">
+                <label class="form-label">Trip Type Selection</label>
+                <select id="tripType" class="form-select w-full">
+                    <option value="intercity">Intercity Drop</option>
+                    <option value="local">Local Hourly Package</option>
+                    <option value="outstation">Outstation Hourly Hire</option>
+                    <option value="multiday">Multi-Day Hire</option>
+                </select>
+            </div>
+
+            <!-- Row 2: Vehicle -->
+            <div class="mb-5">
+                <label class="form-label">Vehicle Category</label>
+                <select id="vehicleType" class="form-select w-full">
+                    <option value="sedan">Sedan (Dzire, Etios..)</option>
+                    <option value="muv">MUV (Ertiga)</option>
+                </select>
+            </div>
+
+            <!-- Row 3: Dates & Times -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                <div>
+                    <label class="form-label">Start Date & Time</label>
+                    <div class="flex gap-2">
+                        <input type="date" id="startDate" class="form-input flex-grow">
+                        <input type="time" id="startTime" class="form-input w-32 time-input">
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">End Date & Time</label>
+                    <div class="flex gap-2">
+                        <input type="date" id="endDate" class="form-input flex-grow">
+                        <input type="time" id="endTime" class="form-input w-32 time-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 4: KM and Extras -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="form-label">Toll, Parking, Permit (₹)</label>
+                    <input type="number" id="extraCharges" class="form-input w-full" placeholder="0" value="0">
+                </div>
+                <div>
+                    <label class="form-label">Total Distance Run (KM)</label>
+                    <input type="number" id="totalKm" class="form-input w-full" placeholder="Enter Actual KM">
+                    <span id="incKmLabel" class="text-xs font-bold text-blue-600 mt-1" style="display:none"></span>
+                </div>
+            </div>
+
+            <button id="calcBtn" class="calc-btn w-full bg-black text-white py-4 rounded-lg font-bold">CALCULATE FARE</button>
+
+            <!-- Result Box -->
+            <div id="resultBox" class="mt-8" style="display:none">
+                <div class="bg-gray-900 text-white p-6 rounded-lg relative font-mono">
+                    <div class="flex justify-between border-b border-gray-700 pb-2 mb-4">
+                        <span class="text-green-500 text-xs tracking-widest">BREAKDOWN</span>
+                        <button id="copyBtn" class="text-gray-400 hover:text-white"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <pre id="receiptContent" class="text-sm whitespace-pre-wrap leading-relaxed"></pre>
+                    <div class="mt-4 pt-4 border-t border-dashed border-gray-700 flex justify-between items-end">
+                        <span class="text-gray-400">GRAND TOTAL</span>
+                        <span id="finalAmount" class="text-3xl font-bold text-green-400">₹0</span>
+                    </div>
+                </div>
+
+                <button id="invoiceBtn" class="w-full bg-green-600 text-white py-4 rounded-lg font-bold mt-4">
+                    GENERATE INVOICE <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Corrected Paths for Scripts -->
+    <script src="../assets/js/core/sidebar.js"></script>
+    <script src="../assets/js/data/rates.js"></script>
+    <script src="../assets/js/pages/trip-fare.js"></script>
+    <script>
+        fetch("../components/sidebar.html").then(r => r.text()).then(d => {
+            document.getElementById("sidebar-container").innerHTML = d;
+            if (typeof initSidebar === "function") initSidebar();
+        });
+    </script>
+</body>
+</html>
+

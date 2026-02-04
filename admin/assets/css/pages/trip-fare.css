@@ -1,0 +1,83 @@
+/* Existing Card Styles */
+.estimator-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #4a5568; }
+.form-group select, .form-group input {
+    width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 1rem;
+}
+
+.hidden { display: none !important; }
+
+.calc-btn {
+    width: 100%; background: #2d3748; color: white; padding: 12px; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; margin-top: 10px;
+}
+.calc-btn:hover { background: #1a202c; }
+
+/* --- NEW RESULT BOX STYLES --- */
+.result-box {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.result-box h3 { margin-top: 0; color: #2d3748; }
+
+#fareOutput {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    background: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    resize: none;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.btn-copy {
+    background-color: #38a169; /* Green */
+    color: white;
+}
+.btn-copy:hover { background-color: #2f855a; }
+
+.btn-invoice {
+    background-color: #3182ce; /* Blue */
+    color: white;
+}
+.btn-invoice:hover { background-color: #2b6cb0; }
+
+@media (max-width: 480px) {
+    .action-buttons { flex-direction: column; }
+}

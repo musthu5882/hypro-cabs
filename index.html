@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypro Cabs</title>
+
+    <!-- CSS (from public folder) -->
+    <link rel="stylesheet" href="public/assets/css/base.css">
+    <link rel="stylesheet" href="public/assets/css/layout.css">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="app-header">
+    <div class="header-left">
+        <span id="menuBtn" class="icon-btn">
+            <i class="fas fa-bars"></i>
+        </span>
+        <h1>Hypro Cabs</h1>
+    </div>
+</header>
+
+<!-- Sidebar -->
+<div id="sidebar-container"></div>
+
+<main id="main-content">
+    <div style="padding:20px; text-align:center;">
+        <h2>Welcome to Hypro Cabs</h2>
+        <p>This is the public website.</p>
+    </div>
+</main>
+
+<!-- JS -->
+<script src="public/assets/js/core/sidebar.js"></script>
+
+<script>
+fetch("public/components/sidebar.html")
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("sidebar-container").innerHTML = data;
+        if (typeof initSidebar === "function") initSidebar();
+    });
+</script>
+
+</body>
+</html>
