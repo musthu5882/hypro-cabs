@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hypro Cabs</title>
 
-    <!-- Paths updated with leading slash (/) for Vercel -->
-    <link rel="stylesheet" href="/public/assets/css/base.css">
-    <link rel="stylesheet" href="/public/assets/css/layout.css">
+    <!-- REMOVED 'public/' prefix because Vercel moves these to root -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/layout.css">
 
-    <!-- Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
@@ -24,39 +23,45 @@
     </div>
 </header>
 
-<!-- Sidebar -->
 <div id="sidebar-container"></div>
 
 <main id="main-content">
-    <div style="padding:20px; text-align:center;">
+    <div style="padding:20px; text-align:center; margin-top: 80px;">
         <h2>Welcome to Hypro Cabs</h2>
-        <p>This is the public website.</p>
+        <p>Public Website</p>
     </div>
 </main>
 
-<!-- JS Path updated -->
-<script src="/public/assets/js/core/sidebar.js"></script>
+<!-- REMOVED 'public/' prefix -->
+<script src="/assets/js/core/sidebar.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Fetch updated to absolute path
-    fetch("/public/components/sidebar.html")
+    // REMOVED 'public/' prefix here too
+    fetch("/components/sidebar.html")
         .then(res => {
-            if (!res.ok) {
-                throw new Error("Sidebar file not found! Check folder name (public vs Public).");
-            }
+            if (!res.ok) throw new Error("Sidebar path failed");
             return res.text();
         })
         .then(data => {
             document.getElementById("sidebar-container").innerHTML = data;
-            // Initialize sidebar if function exists
             if (typeof initSidebar === "function") initSidebar();
         })
-        .catch(err => console.error("Error loading sidebar:", err));
+        .catch(err => {
+            console.error(err);
+            // Fallback: If Vercel didn't move it, try adding public back (Safety check)
+            fetch("/public/components/sidebar.html")
+                .then(r => r.text())
+                .then(d => {
+                    document.getElementById("sidebar-container").innerHTML = d;
+                    if (typeof initSidebar === "function") initSidebar();
+                });
+        });
 });
 </script>
 
 </body>
 </html>
+
 
