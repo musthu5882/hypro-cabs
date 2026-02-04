@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hypro Cabs</title>
 
-    <!-- CSS (from public folder) -->
-    <link rel="stylesheet" href="public/assets/css/base.css">
-    <link rel="stylesheet" href="public/assets/css/layout.css">
+    <!-- Paths updated with leading slash (/) for Vercel -->
+    <link rel="stylesheet" href="/public/assets/css/base.css">
+    <link rel="stylesheet" href="/public/assets/css/layout.css">
 
     <!-- Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -34,17 +34,29 @@
     </div>
 </main>
 
-<!-- JS -->
-<script src="public/assets/js/core/sidebar.js"></script>
+<!-- JS Path updated -->
+<script src="/public/assets/js/core/sidebar.js"></script>
 
 <script>
-fetch("public/components/sidebar.html")
-    .then(res => res.text())
-    .then(data => {
-        document.getElementById("sidebar-container").innerHTML = data;
-        if (typeof initSidebar === "function") initSidebar();
-    });
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // Fetch updated to absolute path
+    fetch("/public/components/sidebar.html")
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("Sidebar file not found! Check folder name (public vs Public).");
+            }
+            return res.text();
+        })
+        .then(data => {
+            document.getElementById("sidebar-container").innerHTML = data;
+            // Initialize sidebar if function exists
+            if (typeof initSidebar === "function") initSidebar();
+        })
+        .catch(err => console.error("Error loading sidebar:", err));
+});
 </script>
 
 </body>
 </html>
+
