@@ -50,3 +50,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+            document.getElementById("sidebar-container").innerHTML = data;
+
+            // Load sidebar logic
+            const s = document.createElement("script");
+            s.src = "./assets/js/core/sidebar.js";
+            document.body.appendChild(s);
+
+            s.onload = () => {
+                if (typeof initSidebar === 'function') initSidebar();
+            };
+        });
+});
+</script>
+
+</body>
+</html>
