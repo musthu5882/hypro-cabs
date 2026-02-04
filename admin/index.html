@@ -1,3 +1,4 @@
+            document.getElementById("sidebar-container").innerHTML = data;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Hypro Cabs</title>
 
-    <link rel="stylesheet" href="/admin/assets/css/base.css">
-    <link rel="stylesheet" href="/admin/assets/css/layout.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/layout.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
@@ -21,7 +22,6 @@
     </div>
 </header>
 
-<!-- Sidebar loads here -->
 <div id="sidebar-container"></div>
 
 <main id="main-content">
@@ -31,10 +31,25 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-    fetch("/admin/components/sidebar.html")
+    // Fetch path updated to relative path
+    fetch("./components/sidebar.html")
         .then(res => res.text())
         .then(data => {
             document.getElementById("sidebar-container").innerHTML = data;
+
+            const s = document.createElement("script");
+            // Script source path updated to relative path
+            s.src = "./assets/js/core/sidebar.js";
+            document.body.appendChild(s);
+
+            s.onload = () => initSidebar();
+        });
+
+});
+</script>
+
+</body>
+</html>
 
             const s = document.createElement("script");
             s.src = "/admin/assets/js/core/sidebar.js";
