@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Hypro Cabs</title>
 
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/layout.css">
+    <!-- Corrected Relative Paths -->
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/layout.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- ===== HEADER ===== -->
 <header class="app-header">
     <div class="header-left">
         <span id="menuBtn" class="icon-btn">
@@ -22,48 +22,34 @@
     </div>
 </header>
 
-<!-- ===== SIDEBAR DIRECT (NO FETCH) ===== -->
-<div id="overlay"></div>
+<div id="sidebar-container"></div>
 
-<aside id="mySidebar" class="sidebar">
-    <div class="sidebar-head">
-        <h2>Hypro Cabs</h2>
-        <span id="closeBtn">&times;</span>
-    </div>
-
-    <nav class="sidebar-nav">
-        <a href="index.html" class="nav-link">
-            <i class="fas fa-home"></i> Dashboard
-        </a>
-
-        <a href="pages/trip-fare.html" class="nav-link">
-            <i class="fas fa-calculator"></i> Trip Fare
-        </a>
-
-        <a href="pages/invoice.html" class="nav-link">
-            <i class="fas fa-file-invoice"></i> Invoice
-        </a>
-
-        <a href="../index.html" class="nav-link">
-            <i class="fas fa-globe"></i> Public Site
-        </a>
-    </nav>
-</aside>
-
-<!-- ===== MAIN ===== -->
 <main id="main-content">
     <h2>Welcome Admin</h2>
 </main>
 
-<!-- ===== JS ===== -->
-<script src="assets/js/core/sidebar.js"></script>
+<!-- IMPORTANT: Do not remove this <script> tag -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    if (typeof initSidebar === "function") {
-        initSidebar();
-    }
+
+    // Fetch sidebar using relative path
+    fetch("./components/sidebar.html")
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("sidebar-container").innerHTML = data;
+
+            // Load sidebar logic
+            const s = document.createElement("script");
+            s.src = "./assets/js/core/sidebar.js";
+            document.body.appendChild(s);
+
+            s.onload = () => {
+                if (typeof initSidebar === 'function') initSidebar();
+            };
+        });
 });
 </script>
 
 </body>
 </html>
+
