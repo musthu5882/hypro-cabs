@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f1f5f9; }
+        .login-box { background: white; padding: 2rem; border-radius: 12px; width: 100%; max-width: 360px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 6px; }
+        button { width: 100%; padding: 12px; background: #0f172a; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+        button:hover { background: #1e293b; }
+        .error { color: red; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>Admin Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" id="loginBtn">Login</button>
+            <p class="error" id="error-msg"></p>
+        </form>
+    </div>
+
+    <!-- Auth Script -->
+    <script type="module" src="./assets/js/core/auth.js"></script>
+
+</body>
+</html>
+
+
